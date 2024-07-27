@@ -18,7 +18,7 @@ export default function DynamicTitle() {
     
     const [titleState, setTitleState] = useState({
         text: "",
-        schedule: [new ScheduleEvent("", 500), new ScheduleEvent("Welcome", 2000), new ScheduleEvent("", 500), new ScheduleEvent("Want to watch something like <options>Interstellar*;*Friends*;*About Time*;*Your Name*;*The Office*;*La La Land*;*Toy Story 3*;*Grey's Anatomy<end-options>", -1)],
+        schedule: [new ScheduleEvent("", 500), new ScheduleEvent("{centered}Welcome", 2000), new ScheduleEvent("", 500), new ScheduleEvent("Want to watch something like {options}Interstellar*;*Friends*;*About Time*;*Your Name*;*The Office*;*La La Land*;*Toy Story 3*;*Grey's Anatomy{end-options}", -1)],
         startTime: Date.now()
         })
 
@@ -41,6 +41,12 @@ export default function DynamicTitle() {
 
     function getText()
     {
+
+        if(title.current != null)
+        {
+            if(titleState.text.includes("{centered}")) title.current.style.textAlign = 'center';
+            else title.current.style.textAlign = 'left';
+        }
         if(options.length != 1 && title.current != null)
         {
             currentOptionIndex = Math.floor((Date.now()-titleState.startTime)/optionSwitchTime % (options.length-1));
@@ -55,7 +61,7 @@ export default function DynamicTitle() {
 
             var opacity =  1;
             var height = 0;
-            if(donePercentage < animateThreshold)
+            if(donePercentage < animateThreshold && Date.now()-titleState.startTime > optionSwitchTime)
             {
                 opacity =  donePercentage/animateThreshold;
                 height = maxHeight-donePercentage/animateThreshold*maxHeight;
@@ -65,9 +71,8 @@ export default function DynamicTitle() {
                 opacity =  1-(donePercentage-(1-animateThreshold))/animateThreshold;
                 height = (1-(donePercentage-(1-animateThreshold))/animateThreshold*maxHeight);
             }
-
-            const regex = /<options>.*?<end-options>/;
-            title.current.innerHTML = titleState.text.replace(regex, "") + `<a style='opacity:${opacity}; position: relative; top: ${-height}px; right: -10px' class='underline decoration-dashed decoration-pink-500/[.66] bg-gradient-to-r from-orange-300 via-yellow-300 to-amber-300 bg-clip-text'> ${currentOption}</a>`;
+            const regex = /{options}.*?{end-options}/;
+            title.current.innerHTML = titleState.text.replace(regex, "").replace("{centered}", "") + `<a style='opacity:${opacity}; position: relative; top: ${-height}px; right: -10px' class='underline decoration-dashed decoration-pink-500/[.66] bg-gradient-to-r from-orange-300 via-yellow-300 to-amber-300 bg-clip-text'> ${currentOption}</a>`;
 
             //const optionText = document.getElementById("option-text");
             //console.log(optionText);
@@ -75,18 +80,19 @@ export default function DynamicTitle() {
         }
         else
         {
-            title.current.innerHTML = titleState.text;
+            title.current.innerHTML = titleState.text.replace("{centered}", "");
         }
     }
     useEffect(() =>{
         function parseText(text: string)
         {
-            const regex = /<options>(.*?)<end-options>/;
+            const regex = /{options}(.*?){end-options}/;
             var optionsMatch = text.match(regex);
-            if(text.includes("<options>"))
+            if(text.includes("{options}"))
             {
                 setOptions(optionsMatch[1].split("*;*"));
             }
+
         }
         function showNext()
         {
@@ -147,7 +153,7 @@ export default function DynamicTitle() {
         animate();
     }, );
     return(
-        <button className='w-full h-28'>
+        <button className='w-full h-48'>
             <h1 ref={title} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} className="w-full h-full content-center align-middle bg-gradient-to-r from-purple-500 via-violet-450 to-indigo-500 inline-block text-transparent bg-clip-text font-jost text-4xl font-semibold text-left subpixel-antialiased "></h1>
         </button>
     );
