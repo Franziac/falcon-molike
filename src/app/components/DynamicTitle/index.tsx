@@ -154,7 +154,7 @@ export default function DynamicTitle() {
     }, );
     return(
         <button className='w-full h-48'>
-            <h1 ref={title} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} className="w-full h-full content-center align-middle bg-gradient-to-r from-purple-500 via-violet-450 to-indigo-500 inline-block text-transparent bg-clip-text font-jost text-4xl font-semibold text-left subpixel-antialiased "></h1>
+            <h1 ref={title} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} className="w-full h-full content-center align-middle bg-gradient-to-r from-indigo-500 via-violet-450 to-violet-500 inline-block text-transparent bg-clip-text font-jost text-4xl font-semibold text-left subpixel-antialiased "></h1>
         </button>
     );
 }
