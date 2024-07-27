@@ -59,7 +59,6 @@ export default function Home() {
           </div>
           <br></br>
         </div>
-        
         <div ref={signInForm} className="hidden">
           <SignInForm />
         </div>
