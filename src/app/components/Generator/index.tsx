@@ -5,6 +5,42 @@ import React, { useState , useRef} from 'react';
 export default function Generator() {
     const [items, setItems] = useState<string[]>([]);
     const [inputValue, setInputValue] = useState('');
+    const [response, setResponse] = useState(null);
+
+    const requestRecommendations = async (inputs) => {
+        const apiKey = process.env.FALCON_API_KEY;
+        const url = '/api/falcon';
+
+        const body = {
+        model: 'tiiuae/falcon-180b-chat',
+        messages: [
+            {
+            role: 'system',
+            content: 'You are an excellent movie recommendation engine. You give personalized movie recommendations based on the movies based on the movies the user inputs. Recommend 5 movies. Make sure you do not recommend movies the user has entered as input! VERY IMPORTANT: Respond in this exact format with all the properties mentioned: {"movies": [{"title": "movie title (year)", "director": "director", "description": "short description of the movie", "reasoning": "short explanation of why you recommended this movie"}, ...]}',
+            },
+            {
+            role: 'user',
+            content: inputs.join("\n"),
+            },
+        ],
+        };
+
+        try {
+        const res = await fetch(url, {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${apiKey}`,
+            },
+            body: JSON.stringify(body),
+        });
+
+        const data = await res.json();
+        setResponse(data);
+        } catch (error) {
+        console.error('Error:', error);
+        }
+    };
 
     const addItem = (value: string) => {
     const newItem = `${value}`;
@@ -48,8 +84,21 @@ export default function Generator() {
             ))}
             </ul>
             <br className='mb-1'></br>
-            <button type="button" className="bg-indigo-500 text-white p-2 w-full rounded hover:bg-indigo-600">Get suggestions</button>
+            <button type="button" onClick={()=>requestRecommendations(items)} className="bg-indigo-500 text-white p-2 w-full rounded hover:bg-indigo-600">Get recommendations</button>
         </form>
+        {response &&
+        <ul>
+            {JSON.parse(response.data.choices[0].message.content.replace("\n", "").replace("\\", "")).movies.map((item, index) => (
+                <li key={index}>
+                    <div className='flex flex-col bg-slate-100 p-2 mb-1 rounded hover:bg-slate-200 w-full h-fit'>
+                        <p target="_blank" className='text-indigo-500 float-left w-5/6 min-w-[150px]'>{item.title}</p>
+                        <p><b>Description: </b>{item.description}</p>
+                        <p><b>Reasoning: </b>{item.reasoning}</p>
+                    </div>
+                </li>
+            ))}
+        </ul>
+        }
     </div>
     );
 }
