@@ -4,6 +4,7 @@ import { useSession, signIn, signOut } from "next-auth/react"
 import Generator from "./components/Generator/Generator";
 import DynamicTitle from "./components/DynamicTitle";
 import SignInForm from './components/SignInForm';
+import FetchTest from "./components/FetchTest";
 
 export default function Home() {
   const signInForm = useRef(null);
@@ -18,6 +19,7 @@ export default function Home() {
     // rendering components for logged in users
     return (
       <main className="min-h-screen overflow-hidden bg-gradient-to-br from-indigo-100 via-slate-100 to-indigo-100">
+        <FetchTest/>
         <button className="float-right relative top-2 right-5 text-slate-400/80" onClick={() => signOut()}>Sign out</button>
         <div className="mt-10">
           <div className='h-48 w-full flex items-center justify-center'>
