@@ -57,9 +57,13 @@ export default function Generator() {
     };
 
     const handleSubmit = (event) => {
-        addItem(inputValue);
+        if (/\S/.test(inputValue)) {
+            //First condition to check if string is not empty
+            //Second condition checks if string contains just whitespace
+            addItem(inputValue);
+            setInputValue("");
+        }
         event.preventDefault();
-        setInputValue("");
     };
     return (
     <div className="backdrop-blur-md bg-gradient-to-br from-white/10 to-white/10 title-shadow p-6 rounded-lg w-1/2 h-fit min-w-[300px] mb-8">
