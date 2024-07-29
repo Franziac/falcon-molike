@@ -20,8 +20,8 @@ export default function Home() {
     // rendering components for logged in users
     return (
       <main className="absolute min-h-full w-full overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-[900px] min-h-full -z-20 bg-gradient-to-b from-indigo-100 to-violet-100"></div>
-        <div className="absolute top-0 left-0 w-full h-[900px] min-h-full -z-10">
+        <div className="absolute top-0 left-0 w-full min-h-full -z-20 bg-gradient-to-b from-indigo-100 to-violet-100"></div>
+        <div className="absolute top-0 left-0 h-80 w-full min-h-full -z-10">
           <AnimationCanvas/>
         </div>
         <button className="float-right relative top-2 right-5 text-slate-400/80" onClick={() => signOut()}>Sign out</button>
@@ -48,8 +48,9 @@ export default function Home() {
 
   // rendering components for not logged in users
   return (
-    <main className="min-h-screen overflow-hidden bg-gradient-to-br from-purple-100 via-slate-100 to-indigo-100">
-        <div className="absolute top-0 left-0 w-full h-[150%] -z-10">
+    <main className="absolute min-h-full w-full overflow-hidden">
+        <div className="absolute top-0 left-0 w-full min-h-full -z-20 bg-gradient-to-b from-indigo-100 to-violet-100"></div>
+        <div className="absolute top-0 left-0 h-80 w-full min-h-full -z-10">
           <AnimationCanvas/>
         </div>
         <button className="float-right relative top-2 right-5 text-gray-400 font-jost" onClick={() => signIn('google')}>Sign In</button>
