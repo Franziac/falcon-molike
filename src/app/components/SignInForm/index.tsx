@@ -2,12 +2,12 @@
 import { useSession, signIn } from "next-auth/react"
 import { useRef } from "react";
 //import { Backdrop } from "../Backdrop";
-export default function SignInForm(isShown) {
+export default function SignInForm() {
   // rendering components for logged in users
-  const signInForm = useRef(null);
+  const signInForm = useRef<HTMLDivElement>(null);
   function hide()
   {
-    if(signInForm.current != null) signInForm.current.parentElement.style.display = "none";
+    if(signInForm.current && signInForm.current.parentElement) signInForm.current.parentElement.style.display = "none";
   }
   return (
     <div ref={signInForm}>

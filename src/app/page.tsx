@@ -10,7 +10,7 @@ import { ScheduleEvent } from './components/DynamicTitle/ScheduleEvent';
 
 
 export default function Home() {
-  const signInForm = useRef(null);
+  const signInForm = useRef<HTMLDivElement>(null);
   // extracting data from usesession as session
   const { data: session } = useSession()
   function getStarted()

@@ -2,7 +2,12 @@
 import React, { useState, useEffect, useRef} from 'react';
 import { ScheduleEvent } from './ScheduleEvent';
 
-export default function DynamicTitle(props) {
+interface Props {
+    schedule: ScheduleEvent[]
+}
+
+
+export default function DynamicTitle(props: Props) {
     const blurTime = 300;
     const optionSwitchTime = 2500;
     const maxHeight = 50;
@@ -15,7 +20,7 @@ export default function DynamicTitle(props) {
 
     const [options, setOptions] = useState([""]);
 
-    const title = useRef(null);
+    const title = useRef<HTMLHeadingElement>(null);
     const [lastOption, setLastOption] = useState(0);
     const [hoverState, setIsHovered] = useState(
         {
@@ -78,7 +83,7 @@ export default function DynamicTitle(props) {
         {
             const regex = /{options}(.*?){end-options}/;
             var optionsMatch = text.match(regex);
-            if(text.includes("{options}"))
+            if(text.includes("{options}") && optionsMatch)
             {
                 setOptions(optionsMatch[1].split("*;*"));
             }
@@ -100,7 +105,10 @@ export default function DynamicTitle(props) {
         }
         function applyStyling(state: number)
         {
-            title.current.style.filter = `blur(${Math.round(Math.abs(state)/500 * 5)}px)`;
+            if(title.current)
+            {
+                title.current.style.filter = `blur(${Math.round(Math.abs(state)/500 * 5)}px)`;
+            }
             //title.current.style.fontSize = `${Math.round((500-Math.abs(state))/500 * 24 + 12)}px`;
             //title.current.style.lineHeight = `${Math.round(500-(Math.abs(state))/500 * 24 + 16)}px`;
 
