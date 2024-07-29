@@ -1,9 +1,8 @@
-import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
-import { useFrame } from "@react-three/fiber";
 
+interface Props {}
 
-export function OldTV(props) {
+export function OldTV(props: Props) {
   const { nodes, materials } = useGLTF('/old-tv.glb')
   return (
     <group {...props} dispose={null}>

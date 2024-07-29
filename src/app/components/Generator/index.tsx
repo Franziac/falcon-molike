@@ -54,12 +54,12 @@ export default function Generator() {
     setItems(items.filter(item => item != value))
     };
 
-    const handleChange = (event) => {
-    event.preventDefault();
-    setInputValue(event.target.value);
+    const handleChange = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        setInputValue(event.target.value);
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         if (/\S/.test(inputValue)) {
             //First condition to check if string is not empty
             //Second condition checks if string contains just whitespace
@@ -70,7 +70,7 @@ export default function Generator() {
     };
     return (
     <div className="backdrop-blur-md bg-gradient-to-br from-white/10 to-white/10 title-shadow p-6 rounded-lg w-2/3 h-fit min-w-[300px] mb-8">
-        {requesting 
+        {requesting
         ? <div className='w-full flex justify-center content-center'><Image unoptimized={true} src={'../loading.gif'} alt="Loading..." height={125} width={125} /></div>
         : <div>
             <h1 className="text-2xl font-bold mb-3 bg-gradient-to-r from-indigo-500 to-violet-500 bg-clip-text text-transparent">What kind of movie are you looking for?</h1>
@@ -84,7 +84,7 @@ export default function Generator() {
                         <button type="submit" className="bg-indigo-500 text-white p-2 rounded hover:bg-indigo-600 float-right w-1/6 min-w-[50px]">Add</button>
                     </div>
                 }
-                
+
                 <br className='m-4'></br>
                 <ul>
                 {items.map((item, index) => (
