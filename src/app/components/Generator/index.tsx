@@ -8,6 +8,7 @@ export default function Generator() {
     const [response, setResponse] = useState(null);
 
     const requestRecommendations = async (inputs) => {
+        setResponse(null);
         const apiKey = process.env.FALCON_API_KEY;
         const url = '/api/falcon';
 
@@ -16,7 +17,7 @@ export default function Generator() {
         messages: [
             {
             role: 'system',
-            content: 'You are an excellent movie recommendation engine. You give personalized movie recommendations based on the movies based on the movies the user inputs. Recommend 5 movies. Make sure you do not recommend movies the user has entered as input! VERY IMPORTANT: Respond in this exact format with all the properties mentioned: {"movies": [{"title": "movie title (year)", "director": "director", "description": "short description of the movie", "reasoning": "short explanation of why you recommended this movie"}, ...]}',
+            content: 'You are an excellent movie recommendation engine. You give personalized movie recommendations based on the movies the user inputs. Recommend 5 movies. Make sure you do not recommend movies the user has entered as input! VERY IMPORTANT: Respond in this exact format with all the properties mentioned: {"movies": [{"title": "movie title (year)", "director": "director", "description": "short description of the movie", "reasoning": "short explanation of why you recommended this movie"}, ...]}',
             },
             {
             role: 'user',
@@ -61,7 +62,7 @@ export default function Generator() {
         setInputValue("");
     };
     return (
-    <div className="bg-slate-200/25 backdrop-blur-sm p-6 rounded-lg shadow-lg w-1/2 h-fit min-w-[300px] mb-8">
+    <div className="bg-gradient-br from-violet-50 to-indigo-100 title-shadow p-6 rounded-lg w-1/2 h-fit min-w-[300px] mb-8">
         <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"></link>
         <h1 className="text-2xl font-bold mb-3 bg-gradient-to-r from-indigo-500 to-violet-500 bg-clip-text text-transparent">What kind of movie are you looking for?</h1>
         <p className='text-slate-400 p-2'>Enter movies that represent the vibe, storyline, visuals, or other trait that you are craving right now. The suggestion engine will recommend you movies that it thinks you would enjoy based on the movies you enter.</p>
@@ -87,10 +88,10 @@ export default function Generator() {
             <button type="button" onClick={()=>requestRecommendations(items)} className="bg-indigo-500 text-white p-2 w-full rounded hover:bg-indigo-600">Get recommendations</button>
         </form>
         {response &&
-        <ul>
+        <ul className='mt-4'>
             {JSON.parse(response.data.choices[0].message.content.replace("\n", "").replace("\\", "")).movies.map((item, index) => (
                 <li key={index}>
-                    <div className='flex flex-col bg-slate-100 p-2 mb-1 rounded hover:bg-slate-200 w-full h-fit'>
+                    <div className='flex flex-col bg-slate-100 p-2 mb-2 rounded hover:bg-slate-200 w-full h-fit'>
                         <p target="_blank" className='text-indigo-500 float-left w-5/6 min-w-[150px]'>{item.title}</p>
                         <p><b>Description: </b>{item.description}</p>
                         <p><b>Reasoning: </b>{item.reasoning}</p>

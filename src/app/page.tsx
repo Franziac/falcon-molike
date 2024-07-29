@@ -4,7 +4,8 @@ import { useSession, signIn, signOut } from "next-auth/react"
 import Generator from "./components/Generator";
 import DynamicTitle from "./components/DynamicTitle";
 import SignInForm from './components/SignInForm';
-import FetchTest from "./components/FetchTest";
+import AnimationCanvas from "./components/AnimationCanvas";
+
 
 export default function Home() {
   const signInForm = useRef(null);
@@ -18,7 +19,10 @@ export default function Home() {
   if (session) {
     // rendering components for logged in users
     return (
-      <main className="min-h-screen overflow-hidden bg-gradient-to-br from-indigo-100 via-slate-100 to-indigo-100">
+      <main className="min-h-screen overflow-hidden">
+        <div className="h-screen">
+          <AnimationCanvas/>
+        </div>
         <button className="float-right relative top-2 right-5 text-slate-400/80" onClick={() => signOut()}>Sign out</button>
         <div className="mt-10">
           <div className='h-48 w-full flex items-center justify-center'>
@@ -43,7 +47,7 @@ export default function Home() {
 
   // rendering components for not logged in users
   return (
-    <main className="min-h-screen overflow-hidden bg-gradient-to-br from-indigo-100 via-slate-100 to-indigo-100">
+    <main className="min-h-screen overflow-hidden bg-gradient-to-br from-purple-100 via-slate-100 to-indigo-100">
         <button className="float-right relative top-2 right-5 text-gray-400 font-jost" onClick={() => signIn('google')}>Sign In</button>
         <div  className="mt-10">
           <div className='h-48 w-full flex items-center justify-center'>
@@ -53,7 +57,7 @@ export default function Home() {
           </div>
 
           <div className="flex h-10 justify-center">
-            <button onClick={getStarted} className="w-36 rounded-md bg-gradient-to-br from-purple-500 bg-violet-600">
+            <button onClick={getStarted} className="w-36 rounded-md bg-gradient-to-br from-purple-500 to-violet-600">
               <p className="bg-gradient-to-r from-white to-slate-100 text-transparent bg-clip-text font-jost subpixel-antialiase font-medium">Get Started</p>
             </button>
 

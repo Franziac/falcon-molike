@@ -25,6 +25,10 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+.title-shadow
+{
+  box-shadow: 0 2px 16px rgba(156, 43, 255, 0.196);
+}
 
 @layer utilities {
   .text-balance {
