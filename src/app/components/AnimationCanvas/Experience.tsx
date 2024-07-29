@@ -27,7 +27,6 @@ export default function Experience()
     useFrame(state => 
         {
             if(left.current && right.current && bottom.current){
-                console.log("here");
                 x = new THREE.Vector3(1, 0, 0).unproject(state.camera).x;
                 y = new THREE.Vector3(0, 1, 0).unproject(state.camera).y;
                 left.current.setTranslation({x:-x, y: 0, z: 0}, true);
