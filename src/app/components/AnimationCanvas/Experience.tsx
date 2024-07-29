@@ -54,23 +54,34 @@ export default function Experience()
                 <OldTV position={[0, 0, 0]} rotation={[0, 0, 0]} />
             </RigidBody>
             <RigidBody ref={bottom}  type="fixed">
-                <Box position={[0, 0, 0]} rotation={[0, 0, 0]} args={[500, 1, 500]} />
+                <Box position={[0, 0, 0]} rotation={[0, 0, 0]} args={[500, 1, 500]} >
+                    <meshPhongMaterial color="#ffff" opacity={0} transparent />
+                </Box>
             </RigidBody>
 
             <RigidBody ref={left} type="fixed">
-                <Box position={[0, 0, 0]} rotation={[0, 0, 0]} args={[1, 500, 100]} />
+                <Box position={[0, 0, 0]} rotation={[0, 0, 0]} args={[1, 500, 100]} >
+                    <meshPhongMaterial color="#ffff" opacity={0} transparent />
+                </Box>
             </RigidBody>
 
             <RigidBody ref={right} type="fixed">
-                <Box position={[0, 0, 0]} rotation={[0, 0, 0]} args={[1, 500, 100]} />
+                <Box position={[0, 0, 0]} rotation={[0, 0, 0]} args={[1, 500, 100]} >
+                    <meshPhongMaterial color="#ffff" opacity={0} transparent />
+                </Box>
             </RigidBody>
 
             <RigidBody type="fixed">
-                <Box position={[0, 0, -50]} rotation={[0, 0, 0]} args={[500, 500, 1]} />
+                <Box position={[0, 0, -50]} rotation={[0, 0, 0]} args={[500, 500, 1]} >
+                    <meshPhongMaterial color="#ffff" opacity={0} transparent />
+
+                </Box>
             </RigidBody>
 
             <RigidBody type="fixed">
-                <Box position={[0, 0, 50]} rotation={[0, 0, 0]} args={[500, 500, 1]} />
+                <Box position={[0, 0, 50]} rotation={[0, 0, 0]} args={[500, 500, 1]} >
+                    <meshPhongMaterial color="#ffff" opacity={0} transparent />
+                </Box>
             </RigidBody>
         </>
     );

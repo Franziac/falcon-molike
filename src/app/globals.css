@@ -25,9 +25,17 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+.same-size-div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Ensuring the div matches the size of the main element */
+}
 .title-shadow
 {
-  box-shadow: 0 2px 16px rgba(156, 43, 255, 0.196);
+  box-shadow: 0 2px 16px rgba(44, 12, 71, 0.087);
 }
 
 @layer utilities {

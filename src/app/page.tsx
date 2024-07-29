@@ -19,8 +19,9 @@ export default function Home() {
   if (session) {
     // rendering components for logged in users
     return (
-      <main className="min-h-screen overflow-hidden">
-        <div className="h-screen">
+      <main className="absolute min-h-full w-full overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-[900px] min-h-full -z-20 bg-gradient-to-b from-indigo-100 to-violet-100"></div>
+        <div className="absolute top-0 left-0 w-full h-[900px] min-h-full -z-10">
           <AnimationCanvas/>
         </div>
         <button className="float-right relative top-2 right-5 text-slate-400/80" onClick={() => signOut()}>Sign out</button>
@@ -40,7 +41,7 @@ export default function Home() {
         <div className="justify-center content-center mt-4 mb-2">
           <p className="inset-x-0 text-center text-gray-400 font-jost">Powered by Falcon</p>
           <p className="inset-x-0 text-center text-gray-400 font-jost">Made by Frans Järvi</p>
-        </div>
+        </div>        
       </main>
     )
   }
@@ -48,6 +49,9 @@ export default function Home() {
   // rendering components for not logged in users
   return (
     <main className="min-h-screen overflow-hidden bg-gradient-to-br from-purple-100 via-slate-100 to-indigo-100">
+        <div className="absolute top-0 left-0 w-full h-[150%] -z-10">
+          <AnimationCanvas/>
+        </div>
         <button className="float-right relative top-2 right-5 text-gray-400 font-jost" onClick={() => signIn('google')}>Sign In</button>
         <div  className="mt-10">
           <div className='h-48 w-full flex items-center justify-center'>
