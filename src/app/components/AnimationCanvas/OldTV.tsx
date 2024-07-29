@@ -1,4 +1,5 @@
 import { useGLTF } from '@react-three/drei'
+import { Mesh } from 'three';
 
 interface Props {}
 
@@ -10,31 +11,31 @@ export function OldTV(props: Props) {
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.Mesh_4.geometry}
+          geometry={(nodes.Mesh_4 as Mesh).geometry}
           material={materials['Material.003']}
         />
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.Mesh_4_1.geometry}
+          geometry={(nodes.Mesh_4_1 as Mesh).geometry}
           material={materials['Material.005']}
         />
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.Mesh_4_2.geometry}
+          geometry={(nodes.Mesh_4_2 as Mesh).geometry}
           material={materials['Material.004']}
         />
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.Mesh_4_3.geometry}
+          geometry={(nodes.Mesh_4_3 as Mesh).geometry}
           material={materials['Material.002']}
         />
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.Mesh_4_4.geometry}
+          geometry={(nodes.Mesh_4_4 as Mesh).geometry}
           material={materials['Material.001']}
         />
       </group>

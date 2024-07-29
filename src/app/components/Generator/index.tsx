@@ -2,14 +2,43 @@
 import Image from 'next/image';
 import React, { useState , useRef} from 'react';
 
+interface Movie {
+    title: string,
+    director: string,
+    description: string,
+    reasoning: string
+}
+interface Choice {
+    finishReason: string,
+    index: number,
+    message: {
+        content: string
+        role: string
+    }
+}
+interface ApiResponse {
+    data: {
+        id: string,
+        created: number,
+        model: string,
+        usage: {
+            completion_tokens: number,
+            prompt_tokens: number,
+            total_tokens: number
+        },
+        choices: Choice[],
+        object: string
+    };
+}
+
 export default function Generator() {
     const [items, setItems] = useState<string[]>([]);
     const [inputValue, setInputValue] = useState('');
-    const [response, setResponse] = useState(null);
+    const [response, setResponse] = useState<ApiResponse | null>();
     const [requesting, setRequesting] = useState(false);
 
 
-    const requestRecommendations = async (inputs) => {
+    const requestRecommendations = async (inputs: string[]) => {
         setRequesting(true);
         setResponse(null);
         const apiKey = process.env.FALCON_API_KEY;
@@ -54,7 +83,7 @@ export default function Generator() {
     setItems(items.filter(item => item != value))
     };
 
-    const handleChange = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         event.preventDefault();
         setInputValue(event.target.value);
     };
@@ -106,7 +135,7 @@ export default function Generator() {
 
         {response &&
         <ul className='mt-4'>
-            {JSON.parse(response.data.choices[0].message.content.replace("\n", "").replace("\\", "")).movies.map((item, index) => (
+            {JSON.parse(response.data.choices[0].message.content.replace("\n", "").replace("\\", "")).movies.map((item: Movie, index:string) => (
                 <li key={index}>
                     <div className='flex flex-col bg-slate-100 p-2 mb-2 rounded hover:bg-slate-200 w-full h-fit'>
                         <p className='text-indigo-500 float-left w-5/6 min-w-[150px]'>{item.title}</p>
