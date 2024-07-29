@@ -138,7 +138,8 @@ export default function Generator() {
             {JSON.parse(response.data.choices[0].message.content.replace("\n", "").replace("\\", "")).movies.map((item: Movie, index:string) => (
                 <li key={index}>
                     <div className='flex flex-col bg-slate-100 p-2 mb-2 rounded hover:bg-slate-200 w-full h-fit'>
-                        <p className='text-indigo-500 float-left w-5/6 min-w-[150px]'>{item.title}</p>
+                        <p className='text-indigo-500 float-left w-5/6 min-w-[150px] mb-1'>{item.title}</p>
+                        <p><b>Director: </b>{item.director}</p>
                         <p><b>Description: </b>{item.description}</p>
                         <p><b>Reasoning: </b>{item.reasoning}</p>
                     </div>
