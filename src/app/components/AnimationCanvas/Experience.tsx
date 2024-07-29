@@ -37,6 +37,8 @@ export default function Experience()
                 var pos = rigidBody.current.translation();
                 var normPos = new THREE.Vector3(pos.x, pos.y, pos.z).project(state.camera);
                 var vel = rigidBody.current.linvel()
+                rigidBody.current.applyImpulse({x:0, y:0, z: -30* pos.z - 15*vel.z}, true);
+
                 if((normPos.y < -1.1 && vel.y < 0) || (normPos.x < -1.1 && vel.x < 0) || (normPos.x > 1.1 && vel.x > 0))
                 {
                     rigidBody.current.setLinvel({x:-2, y:5, z:0}, true);
@@ -70,18 +72,7 @@ export default function Experience()
                 </Box>
             </RigidBody>
 
-            <RigidBody type="fixed">
-                <Box position={[0, 0, -50]} rotation={[0, 0, 0]} args={[500, 500, 1]} >
-                    <meshPhongMaterial color="#ffff" opacity={0} transparent />
-
-                </Box>
-            </RigidBody>
-
-            <RigidBody type="fixed">
-                <Box position={[0, 0, 50]} rotation={[0, 0, 0]} args={[500, 500, 1]} >
-                    <meshPhongMaterial color="#ffff" opacity={0} transparent />
-                </Box>
-            </RigidBody>
+            
         </>
     );
 }

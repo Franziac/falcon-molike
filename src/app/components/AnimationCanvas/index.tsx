@@ -6,7 +6,7 @@ import { Physics } from "@react-three/rapier";
 import Experience from "./Experience";
 export default function AnimationCanvas(props){
   return (
-    <Canvas className="h-screen" orthographic camera={{ zoom: 10, position: [0, 0, 100], near:50, far: 150}}>
+    <Canvas className="h-screen" orthographic camera={{ zoom: 10, position: [0, 0, 100], near:10, far: 190}}>
       <Suspense>
         <Physics>
           <Experience/>
