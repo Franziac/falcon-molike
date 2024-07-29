@@ -1,24 +1,15 @@
 'use client'
 import React, { useState, useEffect, useRef} from 'react';
+import { ScheduleEvent } from './ScheduleEvent';
 
-export default function DynamicTitle() {
-    class ScheduleEvent
-    {
-        public text = "";
-        public duration = 0;
-        constructor(text: string, duration: number) {
-            this.text = text;
-            this.duration = duration;
-        }
-    }
+export default function DynamicTitle(props) {
     const blurTime = 300;
     const optionSwitchTime = 2500;
     const maxHeight = 50;
     const animateThreshold = 0.3;
-    
     const [titleState, setTitleState] = useState({
         text: "",
-        schedule: [new ScheduleEvent("", 500), new ScheduleEvent("{centered}Welcome", 2000), new ScheduleEvent("", 500), new ScheduleEvent("Want to watch something like {options}Interstellar*;*Friends*;*About Time*;*Your Name*;*The Office*;*La La Land*;*Toy Story 3*;*Grey's Anatomy{end-options}", -1)],
+        schedule: props.schedule,
         startTime: Date.now()
         })
 
@@ -41,13 +32,12 @@ export default function DynamicTitle() {
 
     function getText()
     {
+        if(title.current == null) return;
 
-        if(title.current != null)
-        {
-            if(titleState.text.includes("{centered}")) title.current.style.textAlign = 'center';
-            else title.current.style.textAlign = 'left';
-        }
-        if(options.length != 1 && title.current != null)
+        if(titleState.text.includes("{centered}")) title.current.style.textAlign = 'center';
+        else title.current.style.textAlign = 'left';
+    
+        if(options.length != 1)
         {
             currentOptionIndex = Math.floor((Date.now()-titleState.startTime)/optionSwitchTime % (options.length-1));
             var donePercentage = (Date.now()-titleState.startTime)/optionSwitchTime % (options.length-1) - currentOptionIndex;
@@ -153,8 +143,8 @@ export default function DynamicTitle() {
         animate();
     }, );
     return(
-        <button className='w-full h-48'>
+        <div className='w-full h-48'>
             <h1 ref={title} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} className="w-full h-full content-center align-middle bg-gradient-to-r from-indigo-500 via-violet-450 to-violet-500 inline-block text-transparent bg-clip-text font-jost text-4xl font-semibold text-left subpixel-antialiased "></h1>
-        </button>
+        </div>
     );
 }

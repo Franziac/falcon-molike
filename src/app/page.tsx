@@ -2,9 +2,11 @@
 import { useRef } from "react";
 import { useSession, signIn, signOut } from "next-auth/react"
 import Generator from "./components/Generator";
-import DynamicTitle from "./components/DynamicTitle";
+import DynamicTitle  from "./components/DynamicTitle";
 import SignInForm from './components/SignInForm';
 import AnimationCanvas from "./components/AnimationCanvas";
+import { ScheduleEvent } from './components/DynamicTitle/ScheduleEvent';
+
 
 
 export default function Home() {
@@ -28,7 +30,7 @@ export default function Home() {
         <div className="mt-10">
           <div className='h-48 w-full flex items-center justify-center'>
             <div className="w-730">
-              <DynamicTitle/>
+              <DynamicTitle schedule={[new ScheduleEvent("1", 500), new ScheduleEvent(`{centered}Welcome ${session.user?.name}`, 2000), new ScheduleEvent("", 500), new ScheduleEvent("Want to watch something like {options}Interstellar*;*Fight Club*;*About Time*;*Your Name*;*Goodfellas*;*La La Land*;*Toy Story 3*;*Taxi Driver*;*The Aviator*;*The Martian{end-options}", -1)]}/>
             </div>
           </div>
 
@@ -57,7 +59,7 @@ export default function Home() {
         <div  className="mt-10">
           <div className='h-48 w-full flex items-center justify-center'>
             <div className="w-730">
-              <DynamicTitle/>
+              <DynamicTitle schedule={[new ScheduleEvent("2", 500), new ScheduleEvent("{centered}Welcome", 2000), new ScheduleEvent("", 500), new ScheduleEvent("Want to watch something like {options}Interstellar*;*Fight Club*;*About Time*;*Your Name*;*Goodfellas*;*La La Land*;*Toy Story 3*;*Taxi Driver*;*The Aviator*;*The Martian{end-options}", -1)]}/>
             </div>
           </div>
 
