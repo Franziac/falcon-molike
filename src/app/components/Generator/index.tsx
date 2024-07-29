@@ -70,10 +70,15 @@ export default function Generator() {
         <h1 className="text-2xl font-bold mb-3 bg-gradient-to-r from-indigo-500 to-violet-500 bg-clip-text text-transparent">What kind of movie are you looking for?</h1>
         <p className='text-slate-400 p-2'>Enter movies that represent the vibe, storyline, visuals, or other trait that you are craving right now. The suggestion engine will recommend you movies that it thinks you would enjoy based on the movies you enter.</p>
         <form onSubmit={handleSubmit} className='m-1'>
-            <div className='mb-4'>
-                <input type="text" id="textField" className="border border-indigo-300/80 p-2 rounded float-left w-9/12" placeholder="Enter a movie you like" value={inputValue} onChange={handleChange}></input>
-                <button type="submit" className="bg-indigo-500 text-white p-2 rounded hover:bg-indigo-600 float-right w-1/6 min-w-[50px]">Add</button>
-            </div>
+            { //Check if message failed
+            (items.length >= 7)
+            ?   <p className='text-red-500'>Max movies reached</p>
+            :   <div className='mb-4'>
+                    <input type="text" id="textField" className="border border-indigo-300/80 p-2 rounded float-left w-9/12" placeholder="Enter a movie you like" value={inputValue} onChange={handleChange} maxLength={60}></input>
+                    <button type="submit" className="bg-indigo-500 text-white p-2 rounded hover:bg-indigo-600 float-right w-1/6 min-w-[50px]">Add</button>
+                </div>
+            }
+            
             <br className='m-4'></br>
             <ul>
             {items.map((item, index) => (
