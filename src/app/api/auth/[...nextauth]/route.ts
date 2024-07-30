@@ -5,7 +5,7 @@ import NextAuth from "next-auth"
 import GithubProvider from "next-auth/providers/github"
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
-import prisma from "@/app/prisma";
+import prisma from "../../../../../prisma";
 import bcrypt from 'bcrypt';
 
 const handler = NextAuth({

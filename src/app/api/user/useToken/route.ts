@@ -1,5 +1,5 @@
 //@ts-nocheck
-import prisma from "@/app/prisma";
+import prisma from "../../../../../prisma";
 import { connectToDatabase } from "@/app/helpers/server-helpers";
 import { NextResponse } from "next/server";
 export async function POST(req: Request)

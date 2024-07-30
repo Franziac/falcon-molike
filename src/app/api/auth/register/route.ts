@@ -1,7 +1,7 @@
 //@ts-nocheck
 import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/app/helpers/server-helpers";
-import prisma from "@/app/prisma";
+import prisma from "../../../../../prisma";
 import bcrypt from 'bcrypt';
 
 export async function POST(req: Request)
