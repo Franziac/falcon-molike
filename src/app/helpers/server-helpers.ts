@@ -1,3 +1,4 @@
+//@ts-nocheck
 import prisma from "../prisma"
 export const connectToDatabase = async () =>
 {
@@ -10,3 +11,4 @@ export const connectToDatabase = async () =>
         throw new Error("Unable to connect to database");
     }
 }
+

@@ -1,6 +1,7 @@
 'use client'
 import Image from 'next/image';
-import React, { useState , useRef} from 'react';
+import React, { useState } from 'react';
+import { useSession } from "next-auth/react"
 
 interface Movie {
     title: string,
@@ -36,15 +37,17 @@ export default function Generator() {
     const [inputValue, setInputValue] = useState('');
     const [response, setResponse] = useState<ApiResponse | null>();
     const [requesting, setRequesting] = useState(false);
+    const { data: session } = useSession()
 
 
     const requestRecommendations = async (inputs: string[]) => {
         setRequesting(true);
         setResponse(null);
-        const apiKey = process.env.FALCON_API_KEY;
+
         const url = '/api/falcon';
 
-        const body = {
+        var body = {
+        email: session?.user?.email,
         model: 'tiiuae/falcon-180b-chat',
         messages: [
             {

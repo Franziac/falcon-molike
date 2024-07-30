@@ -6,6 +6,7 @@ import DynamicTitle  from "./components/DynamicTitle";
 import SignInForm from './components/SignInForm';
 import AnimationCanvas from "./components/AnimationCanvas";
 import { ScheduleEvent } from './components/DynamicTitle/ScheduleEvent';
+import { connectToDatabase } from "./helpers/server-helpers";
 
 
 
@@ -17,8 +18,16 @@ export default function Home() {
   {
     if(!session && signInForm.current != null) signInForm.current.style.display = "block";
   }
+  async function updateUserDb()
+  {
+    const res = await fetch("api/user/updateUser", {
+      method: 'POST',
+      body: JSON.stringify({name: session?.user?.name, email: session?.user?.email}),
+    });
+  }
   // checking if sessions exists
   if (session) {
+    updateUserDb();
     // rendering components for logged in users
     return (
       <main className="absolute min-h-full w-full overflow-hidden">
