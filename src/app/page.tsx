@@ -31,6 +31,8 @@ export default function Home() {
     // rendering components for logged in users
     return (
       <main className="absolute min-h-full w-full overflow-hidden">
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0"/>
+
         <div className="absolute top-0 left-0 w-full min-h-full -z-20 bg-gradient-to-b from-indigo-100 to-violet-100"></div>
         <div className="absolute top-0 left-0 h-80 w-full min-h-full -z-10">
           <AnimationCanvas/>
@@ -60,6 +62,7 @@ export default function Home() {
   // rendering components for not logged in users
   return (
     <main className="absolute min-h-full w-full overflow-hidden">
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0"/>
         <div className="absolute top-0 left-0 w-full min-h-full -z-20 bg-gradient-to-b from-indigo-100 to-violet-100"></div>
         <div className="absolute top-0 left-0 h-80 w-full min-h-full -z-10">
           <AnimationCanvas/>
