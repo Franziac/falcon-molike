@@ -56,19 +56,19 @@ export default function Experience()
             </RigidBody>
             <RigidBody ref={bottom}  type="fixed">
                 <Box position={[0, 0, 0]} rotation={[0, 0, 0]} args={[500, 1, 500]} >
-                    <meshPhongMaterial color="#ffff" opacity={0} transparent />
+                    <meshPhongMaterial color="#FFFFFF" opacity={0} transparent />
                 </Box>
             </RigidBody>
 
             <RigidBody ref={left} type="fixed">
                 <Box position={[0, 0, 0]} rotation={[0, 0, 0]} args={[1, 500, 100]} >
-                    <meshPhongMaterial color="#ffff" opacity={0} transparent />
+                    <meshPhongMaterial color="#FFFFFF" opacity={0} transparent />
                 </Box>
             </RigidBody>
 
             <RigidBody ref={right} type="fixed">
                 <Box position={[0, 0, 0]} rotation={[0, 0, 0]} args={[1, 500, 100]} >
-                    <meshPhongMaterial color="#ffff" opacity={0} transparent />
+                    <meshPhongMaterial color="#FFFFFF" opacity={0} transparent />
                 </Box>
             </RigidBody>
 
