@@ -1,6 +1,7 @@
+//@ts-nocheck
 'use client'
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSession } from "next-auth/react"
 
 interface Movie {
@@ -35,11 +36,28 @@ interface ApiResponse {
 export default function Generator() {
     const [items, setItems] = useState<string[]>([]);
     const [inputValue, setInputValue] = useState('');
-    const [response, setResponse] = useState<ApiResponse | null>();
+    const [response, setResponse] = useState<object | null>();
     const [requesting, setRequesting] = useState(false);
+    const [tokens, setTokens] = useState<number>(0);
     const { data: session } = useSession()
 
-
+    async function updateTokens()
+    {
+        const body = {email: session?.user?.email};
+        const res = await fetch("/api/user/getUser", {
+            method: 'POST',
+            body: JSON.stringify(body)
+        })
+        if(res.status == 200)
+        {
+            const user = await res.json();
+            setTokens(user.tokens);
+        }
+    }
+    useEffect( () =>
+        {
+            updateTokens();
+        })
     const requestRecommendations = async (inputs: string[]) => {
         setRequesting(true);
         setResponse(null);
@@ -60,9 +78,9 @@ export default function Generator() {
             },
         ],
         };
-
+        var res = null;
         try {
-        const res = await fetch(url, {
+        res = await fetch(url, {
             method: 'POST',
             headers: {
             'Content-Type': 'application/json',
@@ -71,7 +89,7 @@ export default function Generator() {
         });
 
         const data = await res.json();
-        setResponse(data);
+        setResponse({data: data, status: res.status});
         setRequesting(false);
         } catch (error) {
         console.error('Error:', error);
@@ -105,8 +123,9 @@ export default function Generator() {
         {requesting
         ? <div className='w-full flex justify-center content-center'><Image unoptimized={true} src={'../loading.gif'} alt="Loading..." height={125} width={125} /></div>
         : <div>
-            <h1 className="text-2xl font-bold mb-3 bg-gradient-to-r from-indigo-500 to-violet-500 bg-clip-text text-transparent">What kind of movie are you looking for?</h1>
-            <p className='text-slate-400 p-2'>Enter movies that represent the vibe, storyline, visuals, or other trait that you are craving right now. The suggestion engine will recommend you movies that it thinks you would enjoy based on the movies you enter.</p>
+            <h1 className="float-left text-2xl font-bold font-jost mb-3 bg-gradient-to-r from-indigo-500 to-violet-500 bg-clip-text text-transparent">What kind of movie are you looking for?</h1>
+            <p className='float-left md:float-right text-right ml-2 md:ml-0 font-jost font-bold text-slate-400/80'>{tokens} tokens left</p>
+            <p className='float-left text-slate-400/80 p-2'>Enter movies that represent the vibe, storyline, visuals, or other trait that you are craving right now. The suggestion engine will recommend you movies that it thinks you would enjoy based on the movies you enter.</p>
             <form onSubmit={handleSubmit} className='m-1'>
                 { //Check if message failed
                 (items.length >= 7)
@@ -131,25 +150,36 @@ export default function Generator() {
                 ))}
                 </ul>
                 <br className='mb-1'></br>
-                <button type="button" onClick={()=>requestRecommendations(items)} className="bg-indigo-500 text-white p-2 w-full rounded hover:bg-indigo-600">Get recommendations</button>
+                <button type="button" onClick={()=>requestRecommendations(items)} className="bg-indigo-500 text-white p-2 w-full rounded hover:bg-indigo-600 mt-5">Get recommendations</button>
             </form>
         </div>
     }
 
-        {response &&
-        <ul className='mt-4'>
-            {JSON.parse(response.data.choices[0].message.content.replace("\n", "").replace("\\", "")).movies.map((item: Movie, index:string) => (
-                <li key={index}>
-                    <div className='flex flex-col bg-slate-100 p-2 mb-2 rounded hover:bg-slate-200 w-full h-fit'>
-                        <p className='text-indigo-500 float-left w-5/6 min-w-[150px] mb-1'>{item.title}</p>
-                        <p><b>Director: </b>{item.director}</p>
-                        <p><b>Description: </b>{item.description}</p>
-                        <p><b>Reasoning: </b>{item.reasoning}</p>
-                    </div>
-                </li>
-            ))}
-        </ul>
+        {(response && response.status == 200) &&
+            <ul className='mt-4'>
+                {JSON.parse(response.data.choices[0].message.content.replace("\n", "").replace("\\", "")).movies.map((item: Movie, index:string) => (
+                    <li key={index}>
+                        <div className='flex flex-col bg-slate-100 p-2 mb-2 rounded hover:bg-slate-200 w-full h-fit'>
+                            <p className='text-indigo-500 float-left w-5/6 min-w-[150px] mb-1'>{item.title}</p>
+                            <p><b>Director: </b>{item.director}</p>
+                            <p><b>Description: </b>{item.description}</p>
+                            <p><b>Reasoning: </b>{item.reasoning}</p>
+                        </div>
+                    </li>
+                ))}
+            </ul>
         }
+        {(response && response.status == 403) &&
+            <div className='mt-4'>
+                <p className='text-red-500'>Not enough tokens!</p>
+            </div>
+        }
+        {(response && response.status != 200 && response.status != 403) &&
+            <div className='mt-4'>
+                <p className='text-red-500'>Something went wrong...</p>
+            </div>
+        }
+
     </div>
     );
 }

@@ -2,7 +2,7 @@
 import prisma from "@/app/prisma";
 import { connectToDatabase } from "@/app/helpers/server-helpers";
 import { NextResponse } from "next/server";
-export async function GET(req: Request)
+export async function POST(req: Request)
 {
     try
     {
@@ -11,7 +11,7 @@ export async function GET(req: Request)
         var dbUser = await prisma.user.findFirst({ where: { email: email}})
         if(dbUser)
         {
-            return NextResponse.json({dbUser})
+            return NextResponse.json({...dbUser})
         }
         return NextResponse.json({message: "User not found"}, {status: 500});
     }
