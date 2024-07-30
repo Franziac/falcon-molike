@@ -40,7 +40,7 @@ export default function Home() {
           <div className="mt-10">
             <div className='h-48 w-full flex items-center justify-center'>
               <div className="w-730 ml-2 mr-1">
-                <DynamicTitle schedule={[new ScheduleEvent("1", 500), new ScheduleEvent(`{centered}Welcome ${session.user?.name}`, 2000), new ScheduleEvent("", 500), new ScheduleEvent("Want to watch something like {options}Interstellar*;*Fight Club*;*About Time*;*Your Name*;*Goodfellas*;*La La Land*;*Toy Story 3*;*Taxi Driver*;*The Aviator*;*The Martian{end-options}", -1)]}/>
+                <DynamicTitle schedule={[new ScheduleEvent("1", 500), new ScheduleEvent(`{centered}Welcome ${session.user?.name?.split(" ")[0]}`, 2000), new ScheduleEvent("", 500), new ScheduleEvent("Want to watch something like {options}Interstellar*;*Fight Club*;*About Time*;*Your Name*;*Goodfellas*;*La La Land*;*Toy Story 3*;*Taxi Driver*;*The Aviator*;*The Martian{end-options}", -1)]}/>
               </div>
             </div>
 
