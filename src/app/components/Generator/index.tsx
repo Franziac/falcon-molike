@@ -99,8 +99,16 @@ export default function Generator() {
             signal: AbortSignal.timeout(30000)
         });
 
-        const data = await res.json();
-        setResponse({data: data.data, status: res.status});
+        var data = await res.json();
+        try
+        {
+            data = JSON.parse(response.data.choices[0].message.content.replace("\n", "").replace("\\", ""));
+            setResponse({data: data, status: res.status});
+        }
+        catch
+        {
+            setResponse({data: null, status: 500});
+        }
         setRequesting(false);
         } catch (error) {
         console.error('Error:', error);
@@ -161,8 +169,7 @@ export default function Generator() {
                     </div>
                 }
 
-                <br className='m-4'></br>
-                <ul>
+                <ul className='mt-5'>
                 {items.map((item, index) => (
                     <li key={index}>
                     <div className='bg-slate-100 p-2 mb-1 rounded hover:bg-slate-200 w-full h-12'>
@@ -180,7 +187,7 @@ export default function Generator() {
             <div>
             {(response && response.status == 200) &&
                 <ul className='mt-4'>
-                    {JSON.parse(response.data.choices[0].message.content.replace("\n", "").replace("\\", "")).recommendations.map((item: Recommendation, index:string) => (
+                    {response.data.recommendations.map((item: Recommendation, index:string) => (
                         <li key={index}>
                             <div className='flex flex-col bg-slate-100 p-2 mb-2 rounded hover:bg-slate-200 w-full h-fit'>
                                 <p className='text-indigo-500 float-left w-5/6 min-w-[150px] mb-1'>{item.title}</p>
