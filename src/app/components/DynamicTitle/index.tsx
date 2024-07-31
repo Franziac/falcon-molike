@@ -67,7 +67,7 @@ export default function DynamicTitle(props: Props) {
                 height = (1-(donePercentage-(1-animateThreshold))/animateThreshold*maxHeight);
             }
             const regex = /{options}.*?{end-options}/;
-            title.current.innerHTML = titleState.text.replace(regex, "").replace("{centered}", "").trim() + `<a style='opacity:${opacity}; position: relative; top: ${-height}px; right: -10px' class='underline decoration-dashed decoration-pink-500/[.66] bg-gradient-to-r from-orange-300 via-yellow-300 to-amber-300 bg-clip-text'> ${currentOption}</a>`;
+            title.current.innerHTML = titleState.text.replace(regex, "").replace("{centered}", "").trim() + ` <a style='opacity:${opacity}; position: relative; top: ${-height}px; right: -10px' class='underline decoration-dashed decoration-pink-500/[.66] bg-gradient-to-r from-orange-300 via-yellow-300 to-amber-300 bg-clip-text'>${currentOption}</a>`;
 
             //const optionText = document.getElementById("option-text");
             //console.log(optionText);
