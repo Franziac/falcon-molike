@@ -179,6 +179,16 @@ export default function Generator() {
             </form>
             <div>
             
+            {(response && response.status == 403) &&
+                <div className='mt-4'>
+                    <p className='text-red-500'>Not enough tokens!</p>
+                </div>
+            }
+            {(response && response.status != 200 && response.status != 403) &&
+                <div className='mt-4'>
+                    <p className='text-red-500'>Something went wrong...</p>
+                </div>
+            }
             </div>
         </div>
     }
