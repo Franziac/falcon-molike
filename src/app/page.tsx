@@ -81,6 +81,10 @@ export default function Home() {
               </button>
 
             </div>
+
+            <div className="flex justify-center content-center mt-16 mb-16">
+              <Generator/>
+            </div>
             <br></br>
           </div>
           <div ref={signInForm} className="hidden">
