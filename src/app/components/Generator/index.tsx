@@ -181,8 +181,6 @@ export default function Generator() {
             {(response && response.status == 200) &&
                 <div>
                     <p>{response}</p>
-                    <p>{response.data}</p>
-                    
                 </div>
                 
             }
