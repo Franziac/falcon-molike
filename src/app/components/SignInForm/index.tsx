@@ -17,9 +17,8 @@ export default function SignInForm() {
         
         <div className="relative flex flex-col items-center w-[275px] md:w-[325px] gap-2 bg-violet-500/90 rounded-lg p-6">
           <button onClick={hide} className="absolute top-2 right-2 w-8 h-8 text-center text-lg font-bold text-slate-100/90">x</button>
-          <p className="absolute top-8 float-left w-4/6 min-w-[200px] font-bold text-xl font-jost size-1 text-center text-violet-50 mb-3">Sign in to continue</p>
-          <br className="mb-14"/>
-          <button className="w-48 h-16 hover:w-52 p-2 rounded-md bg-gradient-to-br from-slate-100 to-slate-100" onClick={() => signIn('google')}>
+          <p className="absolute top-8 float-left w-4/6 min-w-[200px] font-bold text-xl font-jost size-1 text-center text-violet-50 mb-14">Sign in to continue</p>
+          <button className="w-48 h-16 hover:w-52 p-2 rounded-md mt-14 bg-gradient-to-br from-slate-100 to-slate-100" onClick={() => signIn('google')}>
             <Image className="float-left" src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="" width={24} height={24} />
             <p className="bg-gradient-to-r from-indigo-500 to-violet-500 text-transparent bg-clip-text font-jost subpixel-antialiased font-medium">Sign in with Google</p>
           </button>
