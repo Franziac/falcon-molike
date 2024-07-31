@@ -179,7 +179,7 @@ export default function Generator() {
             </form>
             <div>
             {(response && response.status == 200) &&
-                <p>{response}</p>
+                <p>{response.data}</p>
             }
             {(response && response.status == 403) &&
                 <div className='mt-4'>
