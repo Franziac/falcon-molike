@@ -149,7 +149,7 @@ export default function Generator() {
             
             <p className='float-left text-slate-400/80 p-2'>Enter movies or tv shows that match the vibe, storyline, visuals, or other trait that you are craving right now. The recommendation engine will use your selections to suggest titles that you might love. For optimal results, choose 3-5 movies/shows that most align with your preferences. </p>
             <form onSubmit={handleSubmit} className='w-full m-1'>
-                <div className='flex flex-col md:flex-row mb-3'>
+                <div className='flex flex-col md:flex-row mb-3 p-2'>
                     <div className='flex'>
                         <p className='mr-2 text-indigo-500/85 font-bold font-jost'>Include movies</p>
                         <input className="mr-6" type="checkbox" id="movies-checkbox" ref={moviesCheckbox} onChange={()=> forceUpdate()} defaultChecked={true}></input>
@@ -162,7 +162,7 @@ export default function Generator() {
 
                 {
                     (moviesCheckbox.current && seriesCheckbox.current && !moviesCheckbox.current.checked && !seriesCheckbox.current.checked) &&
-                    <p className='text-red-500 font-jost font-semibold'>At least one has to be checked!</p>
+                    <p className='text-red-500 font-jost font-semibold p-2'>At least one has to be checked!</p>
                 }
                 { //Check if message failed
                 (items.length >= 7)
@@ -208,12 +208,12 @@ export default function Generator() {
             }
             {(response && response.status == 403) &&
                 <div className='mt-4'>
-                    <p className='text-red-500'>Not enough tokens!</p>
+                    <p className='text-red-500 p-2'>Not enough tokens!</p>
                 </div>
             }
             {(response && response.status != 200 && response.status != 403) &&
                 <div className='mt-4'>
-                    <p className='text-red-500'>Something went wrong...</p>
+                    <p className='text-red-500 p-2'>Something went wrong...</p>
                 </div>
             }
             </div>
