@@ -143,11 +143,11 @@ export default function Generator() {
         ? <div className='w-full flex justify-center content-center'><Image unoptimized={true} src={'../loading.gif'} alt="Loading..." height={125} width={125} /></div>
         : <div className='flex flex-col'>
             <div>
-                <h1 className="float-left text-2xl font-bold font-jost mb-3 bg-gradient-to-r from-indigo-500 to-violet-500 bg-clip-text text-transparent">What kind of movie are you looking for?</h1>
+                <h1 className="float-left text-2xl font-bold font-jost mb-3 bg-gradient-to-r from-indigo-500 to-violet-500 bg-clip-text text-transparent">What kind of entertainment are you looking for?</h1>
                 <p className='float-left md:float-right text-right ml-2 md:ml-0 font-jost font-bold text-slate-400/80'>{tokens} tokens left</p>
             </div>
             
-            <p className='float-left text-slate-400/80 p-2'>Enter movies that match the vibe, storyline, visuals, or other trait that you are craving right now. Our advanced recommendation engine will use your selections to suggest movies that we think you&#39;ll love. For optimal results, we recommend choosing 3-5 movies that align with your preferences. </p>
+            <p className='float-left text-slate-400/80 p-2'>Enter movies or tv shows that match the vibe, storyline, visuals, or other trait that you are craving right now. The recommendation engine will use your selections to suggest titles that you might love. For optimal results, choose 3-5 movies/shows that most align with your preferences. </p>
             <form onSubmit={handleSubmit} className='w-full m-1'>
                 <div className='flex flex-col md:flex-row mb-3'>
                     <div className='flex'>
@@ -168,7 +168,7 @@ export default function Generator() {
                 (items.length >= 7)
                 ?   <p className='text-red-500 font-jost font-semibold'>Max movies reached</p>
                 :   <div className='mb-4'>
-                        <input type="text" id="textField" className="border border-indigo-300/80 p-2 rounded float-left w-9/12" placeholder="Enter a movie you like" value={inputValue} onChange={handleChange} maxLength={60}></input>
+                        <input type="text" id="textField" className="border border-indigo-300/80 p-2 rounded float-left w-9/12" placeholder="Enter a title you like" value={inputValue} onChange={handleChange} maxLength={60}></input>
                         <button type="submit" className="bg-indigo-500 text-white p-2 rounded hover:bg-indigo-600 float-right w-1/6 min-w-[50px]">Add</button>
                     </div>
                 }
@@ -195,6 +195,9 @@ export default function Generator() {
                         <li key={index}>
                             <div className='flex flex-col bg-slate-100 p-2 mb-2 rounded hover:bg-slate-200 w-full h-fit'>
                                 <p className='text-indigo-500 float-left w-5/6 min-w-[150px] mb-1'>{item.title}</p>
+                                {item.isMovie
+                                ? <b>Movie</b>
+                                : <b>TV Series</b>}
                                 {item.isMovie && <p><b>Director: </b>{item.director}</p>}
                                 <p><b>Description: </b>{item.description}</p>
                                 <p><b>Reasoning: </b>{item.reasoning}</p>
