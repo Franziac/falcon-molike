@@ -63,6 +63,7 @@ export default function Generator() {
             updateTokens();
         })
     const requestRecommendations = async (inputs: string[], includeMovies: boolean, includeSeries: boolean) => {
+        if(!includeMovies && !includeSeries) return;
         if(inputs.length == 0) return;
         setRequesting(true);
         setResponse(null);
@@ -71,7 +72,7 @@ export default function Generator() {
 
         var systemPrompt = 'You are an excellent movie and tv series recommendation engine. You give personalized recommendations based on the movies and tv series the user inputs. Recommend 5 movies or tv series. Make sure you do not recommend movies or tv series the user has entered as input! VERY IMPORTANT: Respond in this exact format with all the properties mentioned: {"recommendations": [{"title": "title (year)", "director": "director (on tv series leave empty)", "description": "short description of the movie or tv series", "reasoning": "short explanation of why you recommended this movie/tv series", "isMovie": true/false}, ...]}';
         if(includeMovies && !includeSeries) systemPrompt = 'You are an excellent movie recommendation engine. You give personalized movie recommendations based on the movies the user inputs. Recommend 5 movies. Make sure you do not recommend movies the user has entered as input! VERY IMPORTANT: Respond in this exact format with all the properties mentioned: {"recommendations": [{"title": "movie title (year)", "director": "director", "description": "short description of the movie", "reasoning": "short explanation of why you recommended this movie", "isMovie": true}, ...]}';
-        else if (!includeMovies && includeSeries) systemPrompt = 'You are an excellent movie and tv series recommendation engine. You give personalized recommendations based on the movies and tv series the user inputs. Recommend 5 movies or tv series. Make sure you do not recommend movies or tv series the user has entered as input! VERY IMPORTANT: Respond in this exact format with all the properties mentioned: {"recommendations": [{"title": "title (year)", "director": "director (on tv series leave empty)", "description": "short description of the movie or tv series", "reasoning": "short explanation of why you recommended this movie/tv series", "isMovie": false}, ...]}';
+        else if (!includeMovies && includeSeries) systemPrompt = 'You are an excellent tv series recommendation engine. You give personalized series recommendations based on the tv series the user inputs. Recommend 5 tv series. Make sure you do not recommend tv series the user has entered as input! VERY IMPORTANT: Respond in this exact format with all the properties mentioned: {"recommendations": [{"title": "title (year)", "director": "", "description": "short description of the tv series", "reasoning": "short explanation of why you recommended this tv series", "isMovie": false}, ...]}';
 
         var body = {
         email: session?.user?.email,
@@ -95,6 +96,7 @@ export default function Generator() {
             'Content-Type': 'application/json',
             },
             body: JSON.stringify(body),
+            signal: AbortSignal.timeout(30000)
         });
 
         const data = await res.json();

@@ -24,7 +24,8 @@ export async function POST(request: Request) {
       const response = await fetch('https://api.ai71.ai/v1/chat/completions', {
         method: 'POST',
         headers: headers,
-        body: strRequestBody
+        body: strRequestBody,
+        signal: AbortSignal.timeout(30000)
       });
 
       // Parse the response
