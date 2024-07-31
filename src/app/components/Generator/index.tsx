@@ -149,11 +149,15 @@ export default function Generator() {
             
             <p className='float-left text-slate-400/80 p-2'>Enter movies that match the vibe, storyline, visuals, or other trait that you are craving right now. Our advanced recommendation engine will use your selections to suggest movies that we think you&#39;ll love. For optimal results, we recommend choosing 3-5 movies that align with your preferences. </p>
             <form onSubmit={handleSubmit} className='w-full m-1'>
-                <div className='flex flex-row mb-3'>
-                    <p className='mr-2 text-indigo-500/85 font-bold font-jost'>Include movies</p>
-                    <input className="mr-6" type="checkbox" id="movies-checkbox" ref={moviesCheckbox} onChange={()=> forceUpdate()} defaultChecked={true}></input>
-                    <p className='mr-2 text-indigo-500/85 font-bold font-jost'>Include TV Series</p>
-                    <input className="" type="checkbox" id="series-checkbox" ref={seriesCheckbox} onChange={()=> forceUpdate()} defaultChecked={true}></input>
+                <div className='flex flex-col md:flex-row mb-3'>
+                    <div className='flex'>
+                        <p className='mr-2 text-indigo-500/85 font-bold font-jost'>Include movies</p>
+                        <input className="mr-6" type="checkbox" id="movies-checkbox" ref={moviesCheckbox} onChange={()=> forceUpdate()} defaultChecked={true}></input>
+                    </div>
+                    <div className='flex'>
+                        <p className='mr-2 text-indigo-500/85 font-bold font-jost'>Include TV Series</p>
+                        <input className="" type="checkbox" id="series-checkbox" ref={seriesCheckbox} onChange={()=> forceUpdate()} defaultChecked={true}></input>
+                    </div>
                 </div>
 
                 {
@@ -169,7 +173,7 @@ export default function Generator() {
                     </div>
                 }
 
-                <ul className='mt-5'>
+                <ul className='mt-20'>
                 {items.map((item, index) => (
                     <li key={index}>
                     <div className='bg-slate-100 p-2 mb-1 rounded hover:bg-slate-200 w-full h-12'>
