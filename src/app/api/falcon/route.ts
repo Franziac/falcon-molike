@@ -1,4 +1,3 @@
-//@ts-nocheck
 // pages/api/chat.js
 
 import { NextResponse } from "next/server";
@@ -33,7 +32,7 @@ export async function POST(request: Request) {
       const data = await response.json();
 
       // Return the response from the external API
-      return NextResponse.json({data}).data;
+      return NextResponse.json({data});
     }
     else if(useTokenResponse.status == 403) return NextResponse.json({message: "Not enough tokens!"}, {status: 403});
     else return NextResponse.json({message: "Something went wrong"}, {status: useTokenResponse.status});

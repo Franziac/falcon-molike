@@ -100,7 +100,7 @@ export default function Generator() {
         });
 
         const data = await res.json();
-        setResponse({data: data, status: res.status});
+        setResponse({data: data.data, status: res.status});
         setRequesting(false);
         } catch (error) {
         console.error('Error:', error);
