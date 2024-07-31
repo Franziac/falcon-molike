@@ -12,7 +12,7 @@ export async function POST(req: Request)
         if(!request.name || !request.email) return NextResponse.json({message: "Invalid data"}, {status: 422});
         await connectToDatabase();
         var userData = {email: request.email, name: request.name, tokens: parseInt(process.env.WEEKLY_TOKENS), lastTokens: Date.now(), newsletter: true};
-        if(await prisma.user.findFirst({ where: { email: email}})) return NextResponse.json({message: "User already registered"}, {status: 200});
+        if(await prisma.user.findFirst({ where: { email: request.email}})) return NextResponse.json({message: "User already registered"}, {status: 200});
         if(request.password)
         {
             const hashedPassword = await bcrypt.hash(request.password, 10);
