@@ -178,30 +178,7 @@ export default function Generator() {
                 <button type="button" onClick={()=>requestRecommendations(items, moviesCheckbox?.current?.checked, seriesCheckbox?.current?.checked)} className="bg-indigo-500 text-white p-2 w-full rounded hover:bg-indigo-600 mt-5">Get recommendations</button>
             </form>
             <div>
-            {(response && response.status == 200) &&
-                <ul className='mt-4'>
-                    {JSON.parse(response.data.choices[0].message.content.replace("\n", "").replace("\\", "")).movies.map((item: Movie, index:string) => (
-                        <li key={index}>
-                            <div className='flex flex-col bg-slate-100 p-2 mb-2 rounded hover:bg-slate-200 w-full h-fit'>
-                                <p className='text-indigo-500 float-left w-5/6 min-w-[150px] mb-1'>{item.title}</p>
-                                {item.isMovie && <p><b>Director: </b>{item.director}</p>}
-                                <p><b>Description: </b>{item.description}</p>
-                                <p><b>Reasoning: </b>{item.reasoning}</p>
-                            </div>
-                        </li>
-                    ))}
-                </ul>
-            }
-            {(response && response.status == 403) &&
-                <div className='mt-4'>
-                    <p className='text-red-500'>Not enough tokens!</p>
-                </div>
-            }
-            {(response && response.status != 200 && response.status != 403) &&
-                <div className='mt-4'>
-                    <p className='text-red-500'>Something went wrong...</p>
-                </div>
-            }
+            
             </div>
         </div>
     }
