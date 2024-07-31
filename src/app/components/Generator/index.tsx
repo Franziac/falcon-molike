@@ -178,7 +178,9 @@ export default function Generator() {
                 <button type="button" onClick={()=>requestRecommendations(items, moviesCheckbox?.current?.checked, seriesCheckbox?.current?.checked)} className="bg-indigo-500 text-white p-2 w-full rounded hover:bg-indigo-600 mt-5">Get recommendations</button>
             </form>
             <div>
-            
+            {(response && response.status == 200) &&
+                <p>{response}</p>
+            }
             {(response && response.status == 403) &&
                 <div className='mt-4'>
                     <p className='text-red-500'>Not enough tokens!</p>
