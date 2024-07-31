@@ -102,11 +102,12 @@ export default function Generator() {
         var data = await res.json();
         try
         {
-            data = JSON.parse(response.data.choices[0].message.content.replace("\n", "").replace("\\", ""));
+            data = JSON.parse(data.data.choices[0].message.content.replace("\n", "").replace("\\", ""));
             setResponse({data: data, status: res.status});
         }
-        catch
+        catch (error)
         {
+            console.log(error);
             setResponse({data: null, status: 500});
         }
         setRequesting(false);
