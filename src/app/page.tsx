@@ -52,8 +52,8 @@ export default function Home() {
           </div>
 
           <div className="justify-center content-center mt-4 mb-2">
-            <p className="inset-x-0 text-center text-gray-400 font-jost">Powered by Falcon</p>
-            <p className="inset-x-0 text-center text-gray-400 font-jost">Made by Frans Järvi</p>
+            <p className="inset-x-0 text-center text-gray-400 ">Powered by Falcon</p>
+            <p className="inset-x-0 text-center text-gray-400 ">Made by Frans Järvi</p>
           </div>     
         </div>
       </main>
@@ -69,7 +69,7 @@ export default function Home() {
       </div>
       
       <div className="content">
-        <button className="float-right relative top-2 right-5 text-gray-400 font-jost" onClick={() => signIn('google')}>Sign In</button>
+        <button className="float-right relative top-2 right-5 text-gray-400 font-main" onClick={() => signIn('google')}>Sign In</button>
         <div  className="mt-10">
           <div className='h-48 w-full flex items-center justify-center'>
             <div className="w-730 ml-2 mr-1">
@@ -78,8 +78,8 @@ export default function Home() {
           </div>
 
           <div className="flex h-10 justify-center">
-            <button onClick={getStarted} className="w-36 rounded-md bg-gradient-to-br from-purple-500 to-violet-600">
-              <p className="bg-gradient-to-r from-white to-slate-100 text-transparent bg-clip-text font-jost subpixel-antialiase font-medium">Get Started</p>
+            <button onClick={getStarted} className="w-36 rounded-md bg-gradient-to-br main-color-bg  relative hover:w-[10rem] hover:shadow-md shadow-purple-500">
+              <p className="bg-gradient-to-r from-white to-slate-100 text-transparent bg-clip-text  subpixel-antialiase font-medium">Get Started</p>
             </button>
 
           </div>
@@ -90,8 +90,8 @@ export default function Home() {
 
 
         <div className="justify-center content-center mt-4 mb-2">
-          <p className="inset-x-0 text-center text-gray-400 font-jost">Powered by Falcon</p>
-          <p className="inset-x-0 text-center text-gray-400 font-jost">Made by Frans Järvi</p>
+          <p className="inset-x-0 text-center text-gray-400 ">Powered by Falcon</p>
+          <p className="inset-x-0 text-center text-gray-400 ">Made by Frans Järvi</p>
         </div>
       </div>
 

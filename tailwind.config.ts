@@ -15,6 +15,9 @@ const config: Config = {
       },
       spacing: {
         '730': '46rem',
+      },
+      fontFamily: {
+        "main": ["Inter"]
       }
     },
   },

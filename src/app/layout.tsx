@@ -17,7 +17,11 @@ export default function RootLayout({
 }) {
   return (
     <SessionWrapper>
-    <html lang="en" className=''>
+    <html lang="en" className='font-main'>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com"/>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900" rel="stylesheet"/>
+      </head>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <body className={""+inter.className}>{children}</body>
     </html>

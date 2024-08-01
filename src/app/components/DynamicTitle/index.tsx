@@ -67,7 +67,7 @@ export default function DynamicTitle(props: Props) {
                 height = (1-(donePercentage-(1-animateThreshold))/animateThreshold*maxHeight);
             }
             const regex = /{options}.*?{end-options}/;
-            title.current.innerHTML = titleState.text.replace(regex, "").replace("{centered}", "").trim() + ` <a style='opacity:${opacity}; position: relative; top: ${-height}px; right: -10px' class='underline decoration-dashed decoration-pink-500/[.66] bg-gradient-to-r from-orange-300 via-yellow-300 to-amber-300 bg-clip-text'>${currentOption}</a>`;
+            title.current.innerHTML = titleState.text.replace(regex, "").replace("{centered}", "").trim() + ` <a style='opacity:${opacity}; position: relative; top: ${-height}px; right: -10px' class='underline decoration-dashed decoration-pink-500/[.66] bg-gradient-to-r from-orange-300 via-yellow-300 to-amber-300 bg-clip-text font-main'>${currentOption}</a>`;
 
             //const optionText = document.getElementById("option-text");
             //console.log(optionText);
@@ -152,7 +152,7 @@ export default function DynamicTitle(props: Props) {
     }, );
     return(
         <div className='w-full h-48'>
-            <h1 ref={title} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} className="w-full h-full content-center align-middle bg-gradient-to-r from-indigo-500 via-violet-450 to-violet-500 inline-block text-transparent bg-clip-text font-jost text-4xl font-semibold text-left subpixel-antialiased "></h1>
+            <h1 ref={title} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} className="w-full h-full content-center align-middle bg-gradient-to-r from-indigo-500 via-violet-450 to-violet-500 inline-block text-transparent bg-clip-text font-main text-4xl font-semibold text-left subpixel-antialiased "></h1>
         </div>
     );
 }

@@ -18,6 +18,7 @@
   }
 }
 
+
 * {
   margin: 0;
   padding: 0;
@@ -34,6 +35,11 @@ main {
   min-height: 100vh;
 }
 
+.main-color-bg{
+  background: linear-gradient(to bottom, rgb(139 92 246), rgb(163, 72, 247));
+}
+
+
 /* Full size background */
 .background {
   position: absolute;
@@ -41,7 +47,7 @@ main {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, rgb(224 231 255), rgb(237 233 254));
+  background: linear-gradient(to bottom, rgb(239, 242, 253), rgb(245, 243, 254));
   z-index: 1;
   /* Use this if you want the background to stretch with content */
   min-height: 100%;
