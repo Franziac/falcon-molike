@@ -79,7 +79,7 @@ export default function Home() {
 
           <div className="flex h-10 justify-center">
             <button onClick={getStarted} className="w-36 rounded-md bg-gradient-to-br main-color-bg  relative hover:w-[10rem] hover:shadow-md shadow-purple-500">
-              <p className="bg-gradient-to-r from-white to-slate-100 text-transparent bg-clip-text  subpixel-antialiase font-medium">Get Started</p>
+              <p className="main-text">Get Started</p>
             </button>
 
           </div>

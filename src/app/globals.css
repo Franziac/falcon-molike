@@ -39,6 +39,20 @@ main {
   background: linear-gradient(to bottom, rgb(139 92 246), rgb(163, 72, 247));
 }
 
+.secondary-color-bg
+{
+  background: linear-gradient(to bottom, rgb(129 140 248), rgb(99 102 241));
+}
+
+.main-text{
+  background: linear-gradient(to right, rgb(255, 255, 255), rgb(241 245 249));
+  background-clip: text;
+  color: transparent;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  font-weight: 500;
+}
+
 
 /* Full size background */
 .background {

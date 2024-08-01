@@ -144,7 +144,7 @@ export default function Generator() {
         ? <div className='w-full flex justify-center content-center'><Image unoptimized={true} src={'../loading.gif'} alt="Loading..." height={125} width={125} /></div>
         : <div className='flex flex-col'>
             <div>
-                <h1 className="float-left text-2xl font-bold mb-3 bg-gradient-to-r from-indigo-500 to-violet-500 bg-clip-text text-transparent">What kind of entertainment are you looking for?</h1>
+                <h1 className="float-left text-2xl font-bold mb-3 bg-gradient-to-r from-indigo-500 to-indigo-500 bg-clip-text text-transparent">What kind of entertainment are you looking for?</h1>
                 <p className='float-left md:float-right text-right ml-2 md:ml-0 font-bold text-slate-400/80'>{tokens} tokens left</p>
             </div>
             
@@ -170,7 +170,7 @@ export default function Generator() {
                 ?   <p className='text-red-500 font-semibold'>Max movies reached</p>
                 :   <div className='mb-4'>
                         <input type="text" id="textField" className="border border-indigo-300/80 p-2 rounded float-left w-9/12" placeholder="Enter a title you like" value={inputValue} onChange={handleChange} maxLength={60}></input>
-                        <button type="submit" className="bg-indigo-500 text-white p-2 rounded hover:bg-indigo-600 float-right w-1/6 min-w-[50px]">Add</button>
+                        <button type="submit" className="secondary-color-bg p-2 rounded float-right w-1/6 min-w-[50px]"><p className='main-text'>Add</p></button>
                     </div>
                 }
 
@@ -187,7 +187,7 @@ export default function Generator() {
                 ))}
                 </ul>
                 <br className='mb-1'></br>
-                <button type="button" onClick={()=>requestRecommendations(items, moviesCheckbox?.current?.checked, seriesCheckbox?.current?.checked)} className="bg-indigo-500 text-white p-2 w-full rounded hover:bg-indigo-600 mt-5">Get recommendations</button>
+                <button type="button" onClick={()=>requestRecommendations(items, moviesCheckbox?.current?.checked, seriesCheckbox?.current?.checked)} className="secondary-color-bg p-2 w-full rounded mt-5"><p className='main-text'>Get recommendations</p></button>
             </form>
             <div>
             {(response && response.status == 200) &&
