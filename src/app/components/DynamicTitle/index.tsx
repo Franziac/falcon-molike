@@ -152,7 +152,7 @@ export default function DynamicTitle(props: Props) {
     }, );
     return(
         <div className='w-full h-48'>
-            <h1 ref={title} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} className="w-full h-full content-center align-middle bg-gradient-to-r from-indigo-500 via-violet-450 to-violet-500 inline-block text-transparent bg-clip-text font-main text-4xl font-semibold text-left subpixel-antialiased "></h1>
+            <h1 ref={title} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} className="w-full h-full content-center align-middle bg-gradient-to-r from-indigo-500 via-violet-450 to-violet-500 inline-block text-transparent bg-clip-text text-4xl font-semibold text-left subpixel-antialiased "></h1>
         </div>
     );
 }

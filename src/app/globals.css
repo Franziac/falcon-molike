@@ -52,7 +52,14 @@ main {
   -moz-osx-font-smoothing: auto;
   font-weight: 500;
 }
-
+.main-text-dark{
+  background: linear-gradient(to right, rgb(33, 33, 33), rgb(30, 30, 30));
+  background-clip: text;
+  color: transparent;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  font-weight: 500;
+}
 
 /* Full size background */
 .background {

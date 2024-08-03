@@ -11,13 +11,7 @@ export async function POST(req: Request)
         var dbUser = await prisma.user.findFirst({ where: { email: email}})
         if(!dbUser) // Add user to db if it doesn't exist
         {
-            const user = {name: name, email: email}
-            const res = await fetch(`${process.env.NEXTAUTH_URL}/api/auth/register`, {
-                method: 'POST',
-                body: JSON.stringify(user),
-            });
-            dbUser = res.json()
-
+            return NextResponse.json({message: "Not registered"}, {status: 200});
         }
         else if(dbUser.lastTokens + parseInt(process.env.TOKEN_RESET_INTERVAL_MS) < Date.now())
         {
@@ -28,7 +22,7 @@ export async function POST(req: Request)
                 data: {tokens: 10, lastTokens: Date.now()}
             })
         }
-        return NextResponse.json({dbUser}, {status: 200});
+        return NextResponse.json({}, {status: 200});
     }
     catch (error)
     {
