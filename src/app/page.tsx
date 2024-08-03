@@ -27,10 +27,9 @@ export default function Home() {
       method: 'POST',
       body: JSON.stringify({name: session?.user?.name, email: session?.user?.email}),
     });
-    const data = res.json();
+    const data = await res.json();
     if(data.message && data.message == "Not registered") setRegistering(true);
     else setRegistering(false);
-    console.log(isRegistering);
   }
   // checking if sessions exists
   if (session) {
@@ -44,9 +43,6 @@ export default function Home() {
       </div>
       
       <div className="content">
-        {isRegistering &&
-          <AcceptForm setRegistering={setRegistering}/>
-        }
         <button className="float-right relative top-2 right-5 text-slate-400/80" onClick={() => signOut()}>Sign out</button>
         <div className="mt-10">
           <div className='h-48 w-full flex items-center justify-center'>
@@ -55,9 +51,12 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="flex justify-center content-center mt-16 mb-16">
-            <Generator/>
-          </div>
+          {isRegistering
+            ? <AcceptForm setRegistering={setRegistering}/>
+            : <div className="flex justify-center content-center mt-16 mb-16">
+                <Generator/>
+              </div>
+          }
           <br></br>
         </div>
 

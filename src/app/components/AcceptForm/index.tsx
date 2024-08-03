@@ -10,7 +10,7 @@ export default function AcceptForm({setRegistering}) {
     const newsletter = useRef<HTMLInputElement>(null);
     const [, forceUpdate] = useReducer(x => x + 1, 0);
 
-    const session = useSession();
+    const { data: session } = useSession()
 
     async function register()
     {
@@ -18,8 +18,8 @@ export default function AcceptForm({setRegistering}) {
         if(tos.current.checked && privacy.current.checked)
         {
             setRegistering(false);
-            const user = {name: session.data?.user.name, email: session.data?.user?.email, newsletter: newsletter.current?.checked}
-            const res = await fetch(`${process.env.NEXTAUTH_URL}/api/auth/register`, {
+            const user = {name: session?.user.name, email: session?.user?.email, newsletter: newsletter.current?.checked}
+            const res = await fetch("/api/auth/register", {
                 method: 'POST',
                 body: JSON.stringify(user),
             });
