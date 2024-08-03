@@ -3,7 +3,7 @@
 import { useSession } from "next-auth/react"
 import { useRef, useReducer } from "react";
 //import { Backdrop } from "../Backdrop";
-export default function AcceptForm({setRegistering}) {
+export default function AcceptForm({setAccepting}) {
     // rendering components for logged in users
     const tos = useRef<HTMLInputElement>(null);
     const privacy = useRef<HTMLInputElement>(null);
@@ -17,7 +17,7 @@ export default function AcceptForm({setRegistering}) {
         if(!tos.current || !privacy.current || !session) return;
         if(tos.current.checked && privacy.current.checked)
         {
-            setRegistering(false);
+            setAccepting(true);
             const user = {name: session?.user.name, email: session?.user?.email, newsletter: newsletter.current?.checked}
             const res = await fetch("/api/auth/register", {
                 method: 'POST',

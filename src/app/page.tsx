@@ -17,6 +17,8 @@ export default function Home() {
   // extracting data from usesession as session
   const { data: session } = useSession()
   const [isRegistering, setRegistering] = useState<boolean>(false);
+  const [isAccepting, setAccepting] = useState<boolean>(false);
+
   function getStarted()
   {
     if(!session && signInForm.current != null) signInForm.current.style.display = "block";
@@ -51,8 +53,8 @@ export default function Home() {
             </div>
           </div>
 
-          {isRegistering
-            ? <AcceptForm setRegistering={setRegistering}/>
+          {(isRegistering && !isAccepting)
+            ? <AcceptForm setAccepting={setAccepting}/>
             : <div className="flex justify-center content-center mt-16 mb-16">
                 <Generator/>
               </div>
