@@ -30,7 +30,7 @@ export default function Home() {
     const data = res.json();
     if(data.message && data.message == "Not registered") setRegistering(true);
     else setRegistering(false);
-
+    console.log(isRegistering);
   }
   // checking if sessions exists
   if (session) {
