@@ -51,7 +51,7 @@ export default function Experience()
     return(
         <>
             <ambientLight intensity={10} />
-            <RigidBody ref={rigidBody} position={[50, 80, 0]} restitution={2} friction={0} angularDamping={0} linearDamping={0} linearVelocity={[10, 0, 0]} angularVelocity={[0, 0, 0]}>
+            <RigidBody ref={rigidBody} position={[40, 60, 0]} restitution={2} rotation={[0, Math.PI, 0]} friction={0} gravityScale={0.2} angularDamping={0} linearDamping={0} linearVelocity={[15, 0, 0]} angularVelocity={[0, 0, 0]}>
                 <OldTV />
             </RigidBody>
             <RigidBody ref={bottom}  type="fixed">
