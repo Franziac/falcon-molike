@@ -1,4 +1,4 @@
-//@ts-ignore
+//@ts-nocheck
 'use client'
 import { useSession } from "next-auth/react"
 import { useRef, useReducer } from "react";
