@@ -39,7 +39,7 @@ export default function AcceptForm({setRegistering}) {
                 <input type="checkbox" ref={privacy} className="checkbox" onChange={forceUpdate}/>
             </div>
             <div className="flex">
-                <p className="text-slate-100/80">I would like to be the email newsletter</p>
+                <p className="text-slate-100/80">I would like to be on the email newsletter</p>
                 <input type="checkbox" ref={newsletter} className="checkbox"/>
             </div>
             {(tos.current && privacy.current && (!tos.current.checked || !privacy.current.checked)) &&
