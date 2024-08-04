@@ -25,7 +25,6 @@ export async function POST(request: Request) {
         method: 'POST',
         headers: headers,
         body: strRequestBody,
-        signal: AbortSignal.timeout(30000)
       });
 
       // Parse the response
