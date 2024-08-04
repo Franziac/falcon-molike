@@ -92,8 +92,17 @@ export default function Home() {
             <button onClick={getStarted} className="w-36 rounded-md bg-gradient-to-br main-color-bg  relative hover:w-[10rem] hover:shadow-md shadow-purple-500">
               <p className="main-text">Get Started</p>
             </button>
-
           </div>
+          <div className="flex justify-center mt-28">
+            <div className="flex flex-col backdrop-blur-md bg-gradient-to-br from-white/10 to-white/10 title-shadow p-6 rounded-lg w-2/3 h-fit min-w-[300px] mb-8">
+              <h1 className="float-left text-2xl font-bold mb-3 bg-gradient-to-r from-indigo-500 to-indigo-500 bg-clip-text text-transparent">Molike&nbsp;&nbsp;&mdash;&nbsp;&nbsp;Discover More of What You Like</h1>
+              <p className="font-main md:text-lg text-indigo-600">We&apos;ve all been there&mdash;you just finished an incredible movie or binged through an amazing TV series, and now you&apos;re left with that lingering <b>feeling of wanting more</b>. But not just more of <b>anything</b>; you want more of that <b><em>something</em></b>. That particular vibe, that genre, that storytelling style that resonated with you so deeply.</p>
+              <p className="mt-3 font-main md:text-lg text-indigo-600">You <b>scroll endlessly</b> through streaming platforms, hoping to stumble upon something that <b>hits the same notes</b>, but nothing quite fits. You might find yourself re-watching the same scenes or episodes, wishing there was an easier way to find something <b>just like it&mdash;but different enough to keep things fresh</b>.</p>
+              <p className="mt-3 font-main md:text-lg text-indigo-600">That&apos;s where Molike comes in. Molike is your personal guide to <b>discovering more of what you love</b>. Whether it&apos;s the suspense of a thriller, the charm of a rom-com, or the depth of a thought-provoking drama, Molike <b>understands your taste </b> and <b>delivers recommendations that feel just right</b>. It&rsquo;s not about finding an exact copy; it&rsquo;s about finding the <b>perfect next watch</b> that captures the essence of what you enjoyed.</p>
+              <p className="mt-3 font-main md:text-lg text-indigo-600">With Molike, <b>you no longer have to settle for less when you crave more</b>. Our smart recommendations bring you closer to your next favorite movie or show, so you can dive back into that world you loved, without the endless search.</p>
+            </div>
+          </div>
+          
         </div>
         <div ref={signInForm} className="hidden">
           <SignInForm />

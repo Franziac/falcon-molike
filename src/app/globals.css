@@ -36,7 +36,7 @@ main {
 }
 
 .main-color-bg{
-  background: linear-gradient(to bottom, rgb(139 92 246), rgb(163, 72, 247));
+  background: linear-gradient(to bottom, rgb(99 102 241), rgb(124 58 237));
 }
 
 .secondary-color-bg
@@ -110,7 +110,7 @@ body::before {
 }
 .title-shadow
 {
-  box-shadow: 0 2px 16px rgba(44, 12, 71, 0.087);
+  box-shadow: 2px 2px 16px rgba(90, 32, 199, 0.164)
 }
 
 @layer utilities {
