@@ -104,6 +104,7 @@ export default function Generator() {
         {
             data = JSON.parse(data.data.choices[0].message.content.replace("\n", "").replace("\\", ""));
             setResponse({data: data, status: res.status});
+            
         }
         catch (error)
         {
