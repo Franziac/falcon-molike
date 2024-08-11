@@ -14,7 +14,7 @@ export async function POST(request: Request) {
   };
 
   try {
-    const useTokenResponse = await fetch(`${process.env.NEXTAUTH_URL}/api/user/useToken`, {
+    const useTokenResponse = await fetch(`/api/user/useToken`, {
       method: 'POST',
       body: useTokenBody
     });
