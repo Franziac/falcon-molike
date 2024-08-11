@@ -33,7 +33,7 @@ export async function POST(request: Request) {
       const data = await response.json();
       console.log(data);
       // Return the response from the external API
-      return NextResponse.json({data});
+      return NextResponse.json({message: "Test"}, {status:500});
     }
     else if(useTokenResponse.status == 403) return NextResponse.json({message: "Not enough tokens!"}, {status: 403});
     else return NextResponse.json({message: "Something went wrong"}, {status: useTokenResponse.status});
