@@ -96,12 +96,13 @@ export default function Generator() {
             'Content-Type': 'application/json',
             },
             body: JSON.stringify(body),
+            
         });
 
         var data = await res.json();
         try
         {
-            data = JSON.parse(data.data.choices[0].message.content.replace("\n", "").replace("\\", "").split("***")[1]);
+            data = JSON.parse(data.data.choices[0].message.content.replace(/\\"/g, "'").replace("\n", "").replace("\\", "").split("***")[1]);
             setResponse({data: data, status: res.status});
         }
         catch (error)
