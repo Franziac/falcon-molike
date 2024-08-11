@@ -95,8 +95,8 @@ export default function Generator() {
             headers: {
             'Content-Type': 'application/json',
             },
+            mode: "no-cors",
             body: JSON.stringify(body),
-            
         });
 
         var data = await res.json();

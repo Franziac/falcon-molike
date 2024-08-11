@@ -15,6 +15,7 @@ export async function POST(request: Request) {
 
   try {
     const useTokenResponse = await fetch(`${process.env.NEXTAUTH_URL}/api/user/useToken`, {
+      mode: "no-cors",
       method: 'POST',
       body: useTokenBody
     });
@@ -22,6 +23,7 @@ export async function POST(request: Request) {
     {
       // Make the POST request using fetch
       const response = await fetch('https://api.ai71.ai/v1/chat/completions', {
+        mode: "no-cors",
         method: 'POST',
         headers: headers,
         body: strRequestBody,
@@ -29,7 +31,7 @@ export async function POST(request: Request) {
 
       // Parse the response
       const data = await response.json();
-
+      console.log(data);
       // Return the response from the external API
       return NextResponse.json({data});
     }
